@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/va"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity="center_horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+     <GridView
+            android:id="@+id/grid"
+            android:layout_width="500dp"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@color/transparent"
+            android:columnWidth="160dp"
+            android:gravity="center_horizontal"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:stretchMode="none"
+            android:verticalSpacing="10dp"
+            tools:listitem="@layout/profile_item" 
+            >
+        </GridView>
+
+</LinearLayout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/dotbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dot_bar_bg"
+            android:gravity="center"
+            android:padding="15dp" >
+
+            <ImageView
+                android:id="@+id/productoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/dot_unselected" />
+
+            <ImageView
+                android:id="@+id/productoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/dot_unselected" />
+
+            <ImageView
+                android:id="@+id/productoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/dot_unselected" />
+
+            <ImageView
+                android:id="@+id/productoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/dot_selected" />
+
+            <ImageView
+                android:id="@+id/productoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dot_unselected" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/f"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical" >
+
+            <Switch
+                android:id="@+id/switch1"
+                style="@style/custom_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Switch
+                android:id="@+id/switch1"
+                style="@style/custom_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:checked="true" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/back"
+                style="@style/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back" />
+
+            <TextView
+                android:id="@+id/next"
+                style="@style/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Next" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            style="@style/slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <EditText
+            android:id="@+id/editText1"
+            style="@style/edittext_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Find" >
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <LinearLayout
+                android:id="@+id/p1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/color_pattern1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/price"
+                    style="@style/lbl_pattern1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02" />
+
+                <TextView
+                    android:id="@+id/price"
+                    style="@style/lbl_pattern2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Followers" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/p2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/color_pattern2"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/price"
+                    style="@style/lbl_pattern1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="34" />
+
+                <TextView
+                    android:id="@+id/price"
+                    style="@style/lbl_pattern2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Following" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/p3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/color_pattern3"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+
+                <TextView
+                    android:id="@+id/price"
+                    style="@style/lbl_pattern2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_gear"
+                    android:drawablePadding="3dp"
+                    android:text="Settings" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/product_bar"
+            android:layout_margin="10dp"
+            android:paddingTop="10dp" />
+
+    </LinearLayout>
+
+</ScrollView>
