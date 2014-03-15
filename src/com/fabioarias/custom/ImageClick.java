@@ -3,8 +3,10 @@ package com.fabioarias.custom;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.fabioarias.MainActivity;
 import com.fabioarias.R;
 import com.fabioarias.VitrinaCompra;
+import com.fabioarias.ui.Cart;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,17 +17,16 @@ import android.widget.Toast;
 
 public class ImageClick implements OnClickListener{
 	private JSONObject item = null;
-	private Activity c= null;
-	public ImageClick(JSONObject item, Activity c){
+	private MainActivity c= null;
+	public ImageClick(JSONObject item, MainActivity c){
 		this.c = c;
 		this.item = item;
 	}
 	@Override
 	public void onClick(View v) {
 		try {
-			Intent intent = new Intent(c, VitrinaCompra.class);
-			intent.putExtra("item", item.toString());
-			c.startActivity(intent);
+			
+			c.launchFragment(new Cart(item), "Carrito");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

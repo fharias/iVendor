@@ -5,49 +5,102 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/rel"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/store_img_height" >
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+        android:layout_height="wrap_content" >
+<!-- 
+        <TextView
+            android:id="@+id/numeroBoleta"
+            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/str_numero" />
+         -->
+        <EditText
+            android:id="@+id/numeroBoleta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray_light" />
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/str_numero"
+            android:inputType="number" >
+        </EditText>
 
-        <LinearLayout
-            android:id="@+id/dotbar"
+        <ImageButton
+            android:id="@+id/scanButton_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_camera" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/codigoVendedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/str_pinvendedor"
+            android:text="000000"
+            android:inputType="number" >
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/scanButton_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_camera" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/codigoCajero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="000000"
+            android:hint="@string/str_pincajero"
+            android:inputType="number" />
+
+        <ImageButton
+            android:id="@+id/scanButton_3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_camera" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/checkout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingRight="10dp" >
+            android:layout_weight="0.45"
+            android:clickable="true"
+            android:text="@string/str_checkout" />
 
-            <ImageView
-                android:id="@+id/dot1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/dot_selected" />
-
-            <ImageView
-                android:id="@+id/dot2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/dot_unselected" />
-
-            <ImageView
-                android:id="@+id/dot3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/dot_unselected" />
-        </LinearLayout>
-    </RelativeLayout>
+        <Button
+            android:id="@+id/cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.48"
+            android:clickable="true"
+            android:text="@string/str_cancelar" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list"

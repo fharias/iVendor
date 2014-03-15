@@ -5,4 +5,11 @@
     android:background="@drawable/logo_splash_1"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/versionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </LinearLayout>

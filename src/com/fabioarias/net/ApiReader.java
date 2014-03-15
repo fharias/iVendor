@@ -11,6 +11,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -58,6 +59,37 @@ public class ApiReader {
 				String result = convertStreamToString(instream);
 				Log.e("JSON>>>", result);
 				data = new JSONArray(result);
+				instream.close();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			Log.e(TAG, e.getMessage());
+		}
+		return data;
+	}
+	
+	public JSONObject getItem(){
+		JSONObject data = null;
+		try{
+			HttpClient httpclient = new DefaultHttpClient();
+			Log.e(TAG, "CONEXION ");
+			// Prepare a request object
+			HttpGet httpget = new HttpGet(url+"/"+controller+"/"+action+".json"); 
+			Log.e(TAG, "CONEXION ");
+			// Execute the request
+			Log.e(TAG, url+"/"+controller+"/"+action+".json");
+			HttpResponse response = null;
+			response = httpclient.execute(httpget);
+			Log.e(TAG, "CONEXION ");
+			HttpEntity entity = response.getEntity();
+			Log.e(TAG, "FINALIZA LA CONEXION ");
+			if (entity != null && response.getStatusLine().getStatusCode() == 200) {
+				Log.e(TAG, "CONEXION EXITOSA");
+				// A Simple JSON Response Read
+				InputStream instream = entity.getContent();
+				String result = convertStreamToString(instream);
+				Log.e("JSON>>>", result);
+				data = new JSONObject(result);
 				instream.close();
 			}
 		}catch(Exception e){

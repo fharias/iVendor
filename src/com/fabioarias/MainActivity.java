@@ -1,7 +1,17 @@
 package com.fabioarias;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import mobi.pdf417.Pdf417MobiScanData;
+import net.photopay.base.BaseBarcodeActivity;
+
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -9,6 +19,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +30,15 @@ import android.widget.ListView;
 
 import com.fabioarias.custom.CustomActivity;
 import com.fabioarias.model.Data;
+import com.fabioarias.model.FacturaDTO;
+import com.fabioarias.net.ApiReader;
 import com.fabioarias.ui.Categories;
 import com.fabioarias.ui.LeftNavAdapter;
 import com.fabioarias.ui.Profile;
 import com.fabioarias.ui.Search;
 import com.fabioarias.ui.Showcase;
 import com.fabioarias.ui.Store;
+import com.fabioarias.utils.BarcodeUtil;
 
 /**
  * The Class MainActivity is the base activity class of the application. This
@@ -35,6 +50,13 @@ public class MainActivity extends CustomActivity
 
 	/** The drawer layout. */
 	private DrawerLayout drawerLayout;
+	private JSONArray cart = null;
+	private String IMEI = null;
+	private JSONArray lastpurchase = null;
+	private static FacturaDTO factura = null;
+	private static Integer store_pos = 0;
+	private static String store_codigo_vendedor = null;
+	private static String store_codigo_cajero = null;
 
 	/** ListView for left side drawer. */
 	private ListView drawerLeft;
@@ -50,9 +72,99 @@ public class MainActivity extends CustomActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		getUUID();
+		getCart();
 		setupDrawer();
 		setupContainer();
+		
+	}
+	
+	public String getIMEI(){
+		return IMEI;
+	}
+	
+	public FacturaDTO getFactura(){
+		return factura;
+	}
+	
+	public String getStore_codigo_vendedor() {
+		return store_codigo_vendedor;
+	}
+
+	public void setStore_codigo_vendedor(String store_codigo_) {
+		store_codigo_vendedor = store_codigo_;
+	}
+	
+	public String getStore_codigo_cajero() {
+		return store_codigo_cajero;
+	}
+
+	public void setStore_codigo_cajero(String store_codigo_) {
+		store_codigo_cajero = store_codigo_;
+	}
+
+	public Integer getStore_pos() {
+		return store_pos;
+	}
+
+	public void setStore_pos(int store_pos) {
+		this.store_pos = store_pos;
+	}
+
+	private void getUUID(){
+		try{
+			TelephonyManager manager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+			IMEI = manager.getDeviceId();
+			Log.e("IMEI", IMEI);
+		}catch(Exception e){
+			Class<?> c;
+			try {
+				c = Class.forName("android.os.SystemProperties");
+				Method get = c.getMethod("get", String.class, String.class );                 
+	            IMEI = (String)(   get.invoke(c, "ro.serialno", "unknown" )  );
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+			}        	           	      
+			   
+		}
+	}
+	
+	public void setCartItem(JSONObject item){
+		if(cart == null)
+			cart = new JSONArray();
+		cart.put(item);
+	}
+	
+	public JSONArray getCart(){
+		try{
+			ApiReader reader = null;
+			reader = new ApiReader(this.getString(R.string.host),"show/"+IMEI,"carts");
+			cart = reader.getItems();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return cart;
+		
+	}
+	
+	public JSONArray getLastpurchase(){
+		try{
+			ApiReader reader = null;
+			reader = new ApiReader(this.getString(R.string.host),"lastpurchases/"+IMEI,"carts");
+			lastpurchase = reader.getItems();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return lastpurchase;
+		
+	}
+	
+	public int getCartSize(){
+		
+		if(cart !=null){
+			return cart.length();
+		}
+		return 0;
 	}
 
 	/**
@@ -118,7 +230,7 @@ public class MainActivity extends CustomActivity
 	private ArrayList<Data> getDummyLeftNavItems()
 	{
 		ArrayList<Data> al = new ArrayList<Data>();
-		al.add(new Data("Vitrina", null, R.drawable.ic_nav1));
+		al.add(new Data("Carro", null, R.drawable.ic_nav1));
 		al.add(new Data("Tienda", null, R.drawable.ic_nav4));
 		al.add(new Data("Busqueda", null, R.drawable.ic_nav5));
 		return al;
@@ -138,18 +250,41 @@ public class MainActivity extends CustomActivity
 		
 		switch(pos){
 		case 0:
-			title = "Vitrina";
-			f = new Showcase();
+			title = "Carro ( "+this.getCartSize()+" )";
+			f = new Store();
+			
 			break;
 		case 1:
-			title = "Tienda";
-			f = new Store();
+			title = "Tienda ";
+			f = new Showcase();
 			break;
 		case 2:
 			title = "Busqueda";
 			f = new Search();
 			break;
 		}
+		if (f != null)
+		{
+			while (getSupportFragmentManager().getBackStackEntryCount() > 0)
+			{
+				getSupportFragmentManager().popBackStackImmediate();
+			}
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.content_frame, f).addToBackStack(title)
+					.commit();
+		}
+	}
+	
+	/**
+	 * This method can be used to attach Fragment on activity view for a
+	 * particular tab position. You can customize this method as per your need.
+	 * 
+	 * @param pos
+	 *            the position of tab selected.
+	 */
+	public void launchFragment(Fragment f, String title)
+	{
+		drawerLayout.closeDrawers();
 		if (f != null)
 		{
 			while (getSupportFragmentManager().getBackStackEntryCount() > 0)
@@ -248,5 +383,68 @@ public class MainActivity extends CustomActivity
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		Pdf417MobiScanData scanData  = null;
+		String barcodeType = null;
+		String barcodeData = null;
+		Log.i("Activity", ""+requestCode);
+		switch(requestCode){
+			case 105536:
+				if (resultCode==BaseBarcodeActivity.RESULT_OK) {
+					scanData = intent.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+					barcodeType = scanData.getBarcodeType();
+					barcodeData = scanData.getBarcodeData();
+					Log.i("RESULT", barcodeType+" -- "+barcodeData);
+					if(scanData.getBarcodeType().equals("PDF417")){
+						try{
+						factura = BarcodeUtil.getFactura(barcodeData);
+						}catch(Exception e){
+							
+						}
+						
+					}
+					this.launchFragment(new Store(), "Vitrina");
+				}
+			break;
+			case 105538:
+			case 105539:
+				if (resultCode==BaseBarcodeActivity.RESULT_OK) {
+					scanData = intent.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+					barcodeType = scanData.getBarcodeType();
+					barcodeData = scanData.getBarcodeData();
+					Log.i("RESULT", barcodeType+" -- "+barcodeData);
+					switch(store_pos){
+					case 1:
+						store_codigo_vendedor = barcodeData;
+						break;
+					case 2:
+						store_codigo_cajero = barcodeData;
+						break;
+					}
+				}
+				this.launchFragment(new Store(), "Vitrina");
+				break;
+			case 65536:
+				if (resultCode == RESULT_OK) {
+			         String contents = intent.getStringExtra("SCAN_RESULT");
+			         String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+			         // Handle successful scan
+			         Log.i("BARCODE", contents);
+			         Log.i("BARCODE", format);
+			      } else if (resultCode == RESULT_CANCELED) {
+			         // Handle cancel
+			      }
+				if (resultCode==BaseBarcodeActivity.RESULT_OK) {
+					scanData = intent.getParcelableExtra(BaseBarcodeActivity.EXTRAS_RESULT);
+					barcodeType = scanData.getBarcodeType();
+					barcodeData = scanData.getBarcodeData();
+					Log.i("RESULT", barcodeType+" -- "+barcodeData);
+					if(barcodeData != null)
+						this.launchFragment(new Search(barcodeData), "Buscar");
+				}
+				break;
+		}
 	}
 }

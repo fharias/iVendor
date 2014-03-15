@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fabioarias.MainActivity;
 import com.fabioarias.R;
 import com.fabioarias.custom.CustomFragment;
 import com.fabioarias.custom.ImageClick;
@@ -31,7 +32,7 @@ public class Showcase extends CustomFragment
 {
 	
 	private JSONArray categories = new JSONArray();
-	private Activity activity = null;
+	private MainActivity activity = null;
 
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
@@ -41,8 +42,8 @@ public class Showcase extends CustomFragment
 			Bundle savedInstanceState)
 	{
 		View v = inflater.inflate(R.layout.showcase, null);
-		activity = this.getActivity();
-		ApiReader reader = new ApiReader("http://winbugs.cloudapp.net/vendormachine","categories","servers");
+		activity = (MainActivity)this.getActivity();
+		ApiReader reader = new ApiReader(getActivity().getString(R.string.host),"categories","servers");
 		try{
 			categories = reader.getItems();
 			Log.e("CATEGORIAS", "LEYENDO CATEGORIAS");
@@ -134,8 +135,8 @@ public class Showcase extends CustomFragment
 			try {
 				item = categories.getJSONObject(pos);
 				text.setText(item.getJSONObject("Item").getString("Description1"));
-				text2.setText("CLP$ "+item.getJSONObject("Item").getString("Cost"));
-				new ApiReader("http://winbugs.cloudapp.net/vendormachine","image","servers").new DownloadImageTask(img).execute(item.getJSONObject("Item").getString("Code"));
+				text2.setText("Stock "+item.getJSONObject("Item").getString("OnHand"));
+				new ApiReader(getActivity().getString(R.string.host),"image","servers").new DownloadImageTask(img).execute(item.getJSONObject("Item").getString("Code"));
 				img.setOnClickListener(new ImageClick(item, activity));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

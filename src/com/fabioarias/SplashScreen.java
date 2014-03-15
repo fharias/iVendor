@@ -2,8 +2,11 @@ package com.fabioarias;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.TextView;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -26,7 +29,15 @@ public class SplashScreen extends Activity
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
-
+		try {
+			TextView versionName = (TextView)findViewById(R.id.versionName);
+			String version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+			Log.i("VERSION", version);
+			versionName.setText("v. "+version);
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		isRunning = true;
 
 		startSplash();

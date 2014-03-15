@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/qrJobCode"
+        android:layout_width="match_parent"
+        android:layout_height="209dp"
+        android:src="@drawable/cat5" />
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@color/white"
+        android:dividerHeight="0dp"
+        tools:listitem="@layout/store_item" >
+    </ListView>
+
+</LinearLayout>

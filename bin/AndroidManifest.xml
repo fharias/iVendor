@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fabioarias"
-    android:versionCode="1"
-    android:versionName="1.0" >
+	package="com.fabioarias" android:versionCode="2" android:versionName="1.7.4-4">
 
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        
-        <activity
-            android:name="SplashScreen"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+	
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="MainActivity"
-            android:label="@string/app_name"
+	<application android:allowBackup="true" android:icon="@drawable/ic_launcher"
+		android:label="@string/app_name" android:theme="@style/AppTheme">
+
+		<activity android:name="SplashScreen" android:label="@string/app_name"
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden"
+			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name="MainActivity" android:label="@string/app_name"
+			android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name="mobi.pdf417.activity.Pdf417ScanActivity" android:label="@string/app_name" android:screenOrientation="portrait" />
+		<activity
+            android:name="CustomScanActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="VitrinaCompra"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
-        </activity>
-        
-    </application>
+        <activity android:name="com.google.zxing.client.android.CaptureActivity"
+   android:screenOrientation="landscape"
+   android:configChanges="orientation|keyboardHidden"
+   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+   android:windowSoftInputMode="stateAlwaysHidden">
+   <intent-filter>
+      <action android:name="android.intent.action.MAIN"/>
+      <category android:name="android.intent.category.DEFAULT"/>
+   </intent-filter>
+   <intent-filter>
+      <action android:name="com.fabioarias.SCAN"/>
+      <category android:name="android.intent.category.DEFAULT"/>
+    </intent-filter>
+</activity>
+	</application>
 
 </manifest>

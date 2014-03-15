@@ -79,6 +79,7 @@ public class ApiController extends AsyncTask<String, Void, Void> {
 		{
 			try
 			{
+				if(reader != null)
 				reader.close();
 			}
 			catch(Exception ex) {}

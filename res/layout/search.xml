@@ -20,7 +20,8 @@
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="Find" >
+            android:hint="Find" 
+            android:imeOptions="actionSearch" >
         </EditText>
 
         <LinearLayout

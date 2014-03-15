@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">VendorMachine</string>
-    <string name="settings">Settings</string>
+    <string name="app_name">iVendor</string>
+    <string name="settings">Configuracion</string>
     <string name="menu1">Menu</string>
-<string name="drawer_open">Open</string>
-<string name="drawer_close">Close</string>
+<string name="drawer_open">Abrir</string>
+<string name="drawer_close">Cerrar</string>
+<string name="str_cancelar">Cancelar</string>
+<string name="str_checkout">Checkout</string>
+<string name="str_pincajero">Pin Cajero</string>
+<string name="str_pinvendedor">Pin Vendedor</string>
+<string name="str_numero">Numero Boleta</string>
+<string name="str_buscar">Buscar</string>
+<string name="Back">Atras</string>
+    <string name="LightOff">Light: off</string>
+    <string name="LightOn">Light: on</string>
+    <!--  string name="host">http://192.168.1.104/ivendor</string -->
+    <string name="host">http://winbugs.cloudapp.net/vendormachine</string>
 </resources>
