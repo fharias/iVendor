@@ -15,16 +15,18 @@ import com.fabioarias.custom.CustomFragment;
  * The Class Profile is the Fragment class that is launched when the user clicks
  * on Profile button in Left navigation drawer.
  */
-public class Profile extends CustomFragment
-{
+public class Profile extends CustomFragment {
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater,
+	 * android.view.ViewGroup, android.os.Bundle)
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState)
-	{
+			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.profile, null);
 
 		setTouchNClick(v.findViewById(R.id.p1));
@@ -36,12 +38,13 @@ public class Profile extends CustomFragment
 		return v;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.taptag.custom.CustomFragment#onClick(android.view.View)
 	 */
 	@Override
-	public void onClick(View v)
-	{
+	public void onClick(View v) {
 		super.onClick(v);
 		if (v.getId() == R.id.p3)
 			getFragmentManager().beginTransaction()
@@ -54,42 +57,46 @@ public class Profile extends CustomFragment
 	 * The current implementation simply display dummy product images. You need
 	 * to change it as per your needs.
 	 */
-	private class GridAdapter extends BaseAdapter
-	{
+	private class GridAdapter extends BaseAdapter {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.widget.Adapter#getCount()
 		 */
 		@Override
-		public int getCount()
-		{
+		public int getCount() {
 			return 20;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.widget.Adapter#getItem(int)
 		 */
 		@Override
-		public Object getItem(int arg0)
-		{
+		public Object getItem(int arg0) {
 			return null;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.widget.Adapter#getItemId(int)
 		 */
 		@Override
-		public long getItemId(int arg0)
-		{
+		public long getItemId(int arg0) {
 			return arg0;
 		}
 
-		/* (non-Javadoc)
-		 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see android.widget.Adapter#getView(int, android.view.View,
+		 * android.view.ViewGroup)
 		 */
 		@Override
-		public View getView(int arg0, View v, ViewGroup arg2)
-		{
+		public View getView(int arg0, View v, ViewGroup arg2) {
 			if (v == null)
 				v = LayoutInflater.from(getActivity()).inflate(
 						R.layout.profile_item, null);

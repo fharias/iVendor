@@ -40,48 +40,47 @@ public class BarcodeUtil {
 					.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 			bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return bitmap;
 	}
-	
-	public static FacturaDTO getFactura(String xml){
+
+	public static FacturaDTO getFactura(String xml) {
 		FacturaDTO facturaDTO = null;
 		XmlPullParserFactory factory;
 		try {
 			factory = XmlPullParserFactory.newInstance();
 			factory.setNamespaceAware(true);
-	        XmlPullParser xpp = factory.newPullParser();
-	        Map<String,String> map = new HashMap<String, String>();
-	        xpp.setInput( new StringReader ( xml) );
-	        int eventType = xpp.getEventType();
-	        String tag = null;
-	        while (eventType != XmlPullParser.END_DOCUMENT) {
-	         if(eventType == XmlPullParser.START_DOCUMENT) {
-	             System.out.println("Start document");
-	         } else if(eventType == XmlPullParser.START_TAG) {
-	             System.out.println("Start tag "+xpp.getName());
-	             tag = xpp.getName();
-	         } else if(eventType == XmlPullParser.END_TAG) {
-	             System.out.println("End tag "+xpp.getName());
-	         } else if(eventType == XmlPullParser.TEXT) {
-	             System.out.println("Text "+xpp.getText());
-	             map.put(tag, xpp.getText());
-	         }
-	         eventType = xpp.next();
-	        }
-	        if(map != null)
-	        {
-	        	facturaDTO = new FacturaDTO();
-	        	facturaDTO.setNumero(map.get("F"));
-	        	facturaDTO.setFecha(map.get("FE"));
-	        	facturaDTO.setValor(map.get("MNT"));
-	        }
+			XmlPullParser xpp = factory.newPullParser();
+			Map<String, String> map = new HashMap<String, String>();
+			xpp.setInput(new StringReader(xml));
+			int eventType = xpp.getEventType();
+			String tag = null;
+			while (eventType != XmlPullParser.END_DOCUMENT) {
+				if (eventType == XmlPullParser.START_DOCUMENT) {
+					System.out.println("Start document");
+				} else if (eventType == XmlPullParser.START_TAG) {
+					System.out.println("Start tag " + xpp.getName());
+					tag = xpp.getName();
+				} else if (eventType == XmlPullParser.END_TAG) {
+					System.out.println("End tag " + xpp.getName());
+				} else if (eventType == XmlPullParser.TEXT) {
+					System.out.println("Text " + xpp.getText());
+					map.put(tag, xpp.getText());
+				}
+				eventType = xpp.next();
+			}
+			if (map != null) {
+				facturaDTO = new FacturaDTO();
+				facturaDTO.setNumero(map.get("F"));
+				facturaDTO.setFecha(map.get("FE"));
+				facturaDTO.setValor(map.get("MNT"));
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
-        
+
 		return facturaDTO;
 	}
 }

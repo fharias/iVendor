@@ -15,8 +15,7 @@ import com.fabioarias.utils.TouchEffect;
  * inherit the common behaviors like implementing a common interface that can be
  * used in all child activities.
  */
-public class CustomActivity extends FragmentActivity
-{
+public class CustomActivity extends FragmentActivity {
 
 	/**
 	 * Apply this Constant as touch listener for views to provide alpha touch
@@ -24,12 +23,13 @@ public class CustomActivity extends FragmentActivity
 	 */
 	public static final TouchEffect TOUCH = new TouchEffect();
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setupActionBar();
 	}
@@ -40,8 +40,7 @@ public class CustomActivity extends FragmentActivity
 	 * can override this method to change the behavior of ActionBar for
 	 * particular Activity
 	 */
-	protected void setupActionBar()
-	{
+	protected void setupActionBar() {
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -52,6 +51,5 @@ public class CustomActivity extends FragmentActivity
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 	}
-
 
 }

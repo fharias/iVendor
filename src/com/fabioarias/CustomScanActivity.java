@@ -16,19 +16,20 @@ public class CustomScanActivity extends BaseBarcodeActivity {
 	private int mScanCount = 0;
 	private Handler mHandler = new Handler();
 	MyViewfinder mViewfinder;
-	
+
 	/**
-	 * This method must create and return custom viewfinder object that
-	 * contains information about how views are layouted on camera surface
-	 * and how they are rotated.
+	 * This method must create and return custom viewfinder object that contains
+	 * information about how views are layouted on camera surface and how they
+	 * are rotated.
 	 */
 	protected AbstractViewFinder onCreateViewFinder() {
 		LayoutInflater inflater = getLayoutInflater();
-		View rotatableCameraOverlay = inflater.inflate(R.layout.camera_overlay_layout, null);
+		View rotatableCameraOverlay = inflater.inflate(
+				R.layout.camera_overlay_layout, null);
 		mViewfinder = new MyViewfinder(this, rotatableCameraOverlay);
 		return mViewfinder;
 	}
-	
+
 	@Override
 	protected void onSetupViewFinder(AbstractViewFinder viewfinder) {
 		super.onSetupViewFinder(viewfinder);

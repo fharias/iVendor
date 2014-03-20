@@ -14,26 +14,27 @@ import android.widget.TextView;
  * be displayed for 3 seconds and than finished automatically and it will also
  * start the next activity of app.
  */
-public class SplashScreen extends Activity
-{
+public class SplashScreen extends Activity {
 
 	/** Check if the app is running. */
 	private boolean isRunning;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 		try {
-			TextView versionName = (TextView)findViewById(R.id.versionName);
-			String version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+			TextView versionName = (TextView) findViewById(R.id.versionName);
+			String version = getPackageManager().getPackageInfo(
+					getPackageName(), 0).versionName;
 			Log.i("VERSION", version);
-			versionName.setText("v. "+version);
+			versionName.setText("v. " + version);
 		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,28 +49,22 @@ public class SplashScreen extends Activity
 	 * Starts the count down timer for 3-seconds. It simply sleeps the thread
 	 * for 3-seconds.
 	 */
-	private void startSplash()
-	{
+	private void startSplash() {
 
 		new Thread(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 
-				try
-				{
+				try {
 
 					Thread.sleep(3000);
 
-				} catch (Exception e)
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
-				} finally
-				{
+				} finally {
 					runOnUiThread(new Runnable() {
 						@Override
-						public void run()
-						{
+						public void run() {
 							doFinish();
 						}
 					});
@@ -82,11 +77,9 @@ public class SplashScreen extends Activity
 	 * If the app is still running than this method will start the MainActivity
 	 * and finish the Splash.
 	 */
-	private synchronized void doFinish()
-	{
+	private synchronized void doFinish() {
 
-		if (isRunning)
-		{
+		if (isRunning) {
 			isRunning = false;
 			Intent i = new Intent(SplashScreen.this, MainActivity.class);
 			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -95,15 +88,15 @@ public class SplashScreen extends Activity
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)
-	{
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-		if (keyCode == KeyEvent.KEYCODE_BACK)
-		{
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			isRunning = false;
 			finish();
 			return true;

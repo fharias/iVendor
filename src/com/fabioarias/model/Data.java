@@ -5,8 +5,7 @@ package com.fabioarias.model;
  * The Class Data is a simple Java Bean that is used to hold Name, Detail and
  * image pairs.
  */
-public class Data
-{
+public class Data {
 
 	/** The title. */
 	private String title;
@@ -27,8 +26,7 @@ public class Data
 	 * @param image
 	 *            the image
 	 */
-	public Data(String title, String desc, int image)
-	{
+	public Data(String title, String desc, int image) {
 		this.title = title;
 		this.desc = desc;
 		this.image = image;
@@ -39,8 +37,7 @@ public class Data
 	 * 
 	 * @return the title
 	 */
-	public String getTitle()
-	{
+	public String getTitle() {
 
 		return title;
 	}
@@ -51,8 +48,7 @@ public class Data
 	 * @param title
 	 *            the new title
 	 */
-	public void setTitle(String title)
-	{
+	public void setTitle(String title) {
 
 		this.title = title;
 	}
@@ -62,8 +58,7 @@ public class Data
 	 * 
 	 * @return the description
 	 */
-	public String getDesc()
-	{
+	public String getDesc() {
 
 		return desc;
 	}
@@ -74,8 +69,7 @@ public class Data
 	 * @param desc
 	 *            the new description
 	 */
-	public void setDesc(String desc)
-	{
+	public void setDesc(String desc) {
 
 		this.desc = desc;
 	}
@@ -85,8 +79,7 @@ public class Data
 	 * 
 	 * @return the image resource id.
 	 */
-	public int getImage()
-	{
+	public int getImage() {
 
 		return image;
 	}
@@ -97,8 +90,7 @@ public class Data
 	 * @param image
 	 *            the new image resource id.
 	 */
-	public void setImage(int image)
-	{
+	public void setImage(int image) {
 
 		this.image = image;
 	}

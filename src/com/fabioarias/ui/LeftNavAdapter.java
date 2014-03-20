@@ -15,8 +15,7 @@ import com.fabioarias.model.Data;
 /**
  * The Adapter class for the ListView displayed in the left navigation drawer.
  */
-public class LeftNavAdapter extends BaseAdapter
-{
+public class LeftNavAdapter extends BaseAdapter {
 
 	/** The items. */
 	private ArrayList<Data> items;
@@ -32,45 +31,49 @@ public class LeftNavAdapter extends BaseAdapter
 	 * @param items
 	 *            the array of items to be displayed on ListView
 	 */
-	public LeftNavAdapter(Context context, ArrayList<Data> items)
-	{
+	public LeftNavAdapter(Context context, ArrayList<Data> items) {
 		this.context = context;
 		this.items = items;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.widget.Adapter#getCount()
 	 */
 	@Override
-	public int getCount()
-	{
+	public int getCount() {
 		return items.size();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.widget.Adapter#getItem(int)
 	 */
 	@Override
-	public Data getItem(int arg0)
-	{
+	public Data getItem(int arg0) {
 		return items.get(arg0);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.widget.Adapter#getItemId(int)
 	 */
 	@Override
-	public long getItemId(int position)
-	{
+	public long getItemId(int position) {
 		return position;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.widget.Adapter#getView(int, android.view.View,
+	 * android.view.ViewGroup)
 	 */
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
-	{
+	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null)
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.left_nav_item, null);

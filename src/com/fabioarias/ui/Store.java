@@ -112,15 +112,18 @@ public class Store extends CustomFragment {
 		codigoCajero = (EditText) v.findViewById(R.id.codigoCajero);
 		codigoCajero.setVisibility(View.INVISIBLE);
 		numeroBoleta = (EditText) v.findViewById(R.id.numeroBoleta);
-		if(((MainActivity)getActivity()).getFactura()!=null){
-			numeroBoleta.setText(((MainActivity)getActivity()).getFactura().getNumero());
+		if (((MainActivity) getActivity()).getFactura() != null) {
+			numeroBoleta.setText(((MainActivity) getActivity()).getFactura()
+					.getNumero());
 		}
-		if(((MainActivity)getActivity()).getStore_codigo_vendedor() != null){
-			codigoVendedor.setText(((MainActivity)getActivity()).getStore_codigo_vendedor());
-			
+		if (((MainActivity) getActivity()).getStore_codigo_vendedor() != null) {
+			codigoVendedor.setText(((MainActivity) getActivity())
+					.getStore_codigo_vendedor());
+
 		}
-		if(((MainActivity)getActivity()).getStore_codigo_cajero() != null){
-			codigoCajero.setText(((MainActivity)getActivity()).getStore_codigo_cajero());
+		if (((MainActivity) getActivity()).getStore_codigo_cajero() != null) {
+			codigoCajero.setText(((MainActivity) getActivity())
+					.getStore_codigo_cajero());
 		}
 		setTouchNClick(cancelar);
 		setTouchNClick(checkout);
@@ -139,9 +142,9 @@ public class Store extends CustomFragment {
 			// SCANING BARCODE
 			try {
 				Pdf417MobiSettings sett = new Pdf417MobiSettings();
-				//sett.setNullQuietZoneAllowed(true);
-				//sett.setAll1DBarcodesEnabled(true);
-				//sett.setAll2DBarcodesEnabled(true);
+				// sett.setNullQuietZoneAllowed(true);
+				// sett.setAll1DBarcodesEnabled(true);
+				// sett.setAll2DBarcodesEnabled(true);
 				sett.setDontShowDialog(true);
 				Log.i("SEARCH", ((MainActivity) getActivity()).getCart()
 						.toString());
@@ -168,9 +171,9 @@ public class Store extends CustomFragment {
 			// SCANING BARCODE
 			try {
 				Pdf417MobiSettings sett = new Pdf417MobiSettings();
-				//sett.setNullQuietZoneAllowed(true);
-				//sett.setAll1DBarcodesEnabled(true);
-				//sett.setAll2DBarcodesEnabled(true);
+				// sett.setNullQuietZoneAllowed(true);
+				// sett.setAll1DBarcodesEnabled(true);
+				// sett.setAll2DBarcodesEnabled(true);
 				sett.setDontShowDialog(true);
 				Log.i("SEARCH", ((MainActivity) getActivity()).getCart()
 						.toString());
@@ -183,9 +186,9 @@ public class Store extends CustomFragment {
 				// intent.putExtra(BaseBarcodeActivity.EXTRAS_LICENSE_KEY,
 				// "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e");
 				// Start Activity
-				((MainActivity)getActivity()).setStore_pos(1);
+				((MainActivity) getActivity()).setStore_pos(1);
 				startActivityForResult(intent, 40002);
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -199,9 +202,9 @@ public class Store extends CustomFragment {
 			// SCANING BARCODE
 			try {
 				Pdf417MobiSettings sett = new Pdf417MobiSettings();
-				//sett.setNullQuietZoneAllowed(true);
-				//sett.setAll1DBarcodesEnabled(true);
-				//sett.setAll2DBarcodesEnabled(true);
+				// sett.setNullQuietZoneAllowed(true);
+				// sett.setAll1DBarcodesEnabled(true);
+				// sett.setAll2DBarcodesEnabled(true);
 				sett.setDontShowDialog(true);
 				Log.i("SEARCH", ((MainActivity) getActivity()).getCart()
 						.toString());
@@ -214,7 +217,7 @@ public class Store extends CustomFragment {
 				// intent.putExtra(BaseBarcodeActivity.EXTRAS_LICENSE_KEY,
 				// "1c61089106f282473fbe6a5238ec585f8ca0c29512b2dea3b7c17b8030c9813dc965ca8e70c8557347177515349e6e");
 				// Start Activity
-				((MainActivity)getActivity()).setStore_pos(2);
+				((MainActivity) getActivity()).setStore_pos(2);
 				startActivityForResult(intent, 40003);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -242,7 +245,9 @@ public class Store extends CustomFragment {
 														DialogInterface dialog,
 														int which) {
 													reader = new ApiReader(
-															getActivity().getString(R.string.host),
+															getActivity()
+																	.getString(
+																			R.string.host),
 															"checkout/"
 																	+ ((MainActivity) getActivity())
 																			.getIMEI()
@@ -337,7 +342,8 @@ public class Store extends CustomFragment {
 									public void onClick(DialogInterface dialog,
 											int which) {
 										reader = new ApiReader(
-												getActivity().getString(R.string.host),
+												getActivity().getString(
+														R.string.host),
 												"cancel/"
 														+ ((MainActivity) getActivity())
 																.getIMEI(),

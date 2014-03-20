@@ -19,12 +19,13 @@ import android.util.Log;
 
 public class ApiController extends AsyncTask<String, Void, Void> {
 	private final HttpClient client = new DefaultHttpClient();
-    private String content;
-    private String error = "NO ERROR";
-    private JSONArray datajson = null;
-    String data =""; 
-    private boolean ready = false;
-    public boolean isReady() {
+	private String content;
+	private String error = "NO ERROR";
+	private JSONArray datajson = null;
+	String data = "";
+	private boolean ready = false;
+
+	public boolean isReady() {
 		return ready;
 	}
 
@@ -32,8 +33,8 @@ public class ApiController extends AsyncTask<String, Void, Void> {
 		this.ready = ready;
 	}
 
-	int sizeData = 0;  
-    
+	int sizeData = 0;
+
 	public JSONArray getDatajson() {
 		return datajson;
 	}
@@ -61,92 +62,87 @@ public class ApiController extends AsyncTask<String, Void, Void> {
 	@Override
 	protected Void doInBackground(String... urls) {
 		/************ Make Post Call To Web Server ***********/
-		BufferedReader reader=null;
+		BufferedReader reader = null;
 
-		// Send data 
-		try
-		{ 
+		// Send data
+		try {
 
-			
 			datajson = receive(urls[0]);
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			error = ex.getMessage();
-		}
-		finally
-		{
-			try
-			{
-				if(reader != null)
-				reader.close();
+		} finally {
+			try {
+				if (reader != null)
+					reader.close();
+			} catch (Exception ex) {
 			}
-			catch(Exception ex) {}
 		}
 		return null;
 	}
-	
-	private JSONArray receive(String url){
+
+	private JSONArray receive(String url) {
 		HttpClient httpclient = new DefaultHttpClient();
-	    // Prepare a request object
-	    HttpGet httpget = new HttpGet(url); 
-	    // Execute the request
-	    HttpResponse response;
+		// Prepare a request object
+		HttpGet httpget = new HttpGet(url);
+		// Execute the request
+		HttpResponse response;
 
-	    JSONArray arr = null;
-	    try {
-	       response = httpclient.execute(httpget);
+		JSONArray arr = null;
+		try {
+			response = httpclient.execute(httpget);
 
-	       HttpEntity entity = response.getEntity();
+			HttpEntity entity = response.getEntity();
 
-	       if (entity != null && response.getStatusLine().getStatusCode() == 200) {
-	                // A Simple JSON Response Read
-	                InputStream instream = entity.getContent();
-	                String result = convertStreamToString(instream);
-	                Log.e("JSON>>>", result);
-	                arr=(JSONArray)new JSONTokener(result).nextValue();;
-	                instream.close();
+			if (entity != null
+					&& response.getStatusLine().getStatusCode() == 200) {
+				// A Simple JSON Response Read
+				InputStream instream = entity.getContent();
+				String result = convertStreamToString(instream);
+				Log.e("JSON>>>", result);
+				arr = (JSONArray) new JSONTokener(result).nextValue();
+				;
+				instream.close();
 
-	            }
-	       ready = true;
-	        } catch (ClientProtocolException e) {
-	            // TODO Auto-generated catch block
-	        	
-	            Log.e("ERROR>>>>",e.toString());
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            Log.e("ERROR>>>>",e.toString());
-	        } catch (JSONException e) {
-	            // TODO Auto-generated catch block
-	        	Log.getStackTraceString(e);
-	            Log.e("ERROR>>>>",e.toString());
-	        }
+			}
+			ready = true;
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
 
-	        return arr;
+			Log.e("ERROR>>>>", e.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			Log.e("ERROR>>>>", e.toString());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			Log.getStackTraceString(e);
+			Log.e("ERROR>>>>", e.toString());
+		}
+
+		return arr;
 	}
-	
+
 	private static String convertStreamToString(InputStream is) {
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-	    StringBuilder sb = new StringBuilder();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
 
-	    String line = null;
-	    try {
-	        while ((line = reader.readLine()) != null) {
-	            sb.append(line);
-	        }
-	    } catch (IOException e) {
-	        Log.e("ERROR>>>>" + "ERROR",e.toString());
+		String line = null;
+		try {
+			while ((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+		} catch (IOException e) {
+			Log.e("ERROR>>>>" + "ERROR", e.toString());
 
-	    } finally {
-	        try {
-	            is.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            Log.e("ERROR>>>>" + "ERRO",e.toString());
-	        }
-	    }
-	    return sb.toString();
+		} finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				Log.e("ERROR>>>>" + "ERRO", e.toString());
+			}
+		}
+		return sb.toString();
 	}
 
 }

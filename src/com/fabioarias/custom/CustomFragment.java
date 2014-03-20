@@ -12,8 +12,7 @@ import android.view.View.OnClickListener;
  * Fragment classes with this class in case you want to apply common set of
  * rules for those Fragments.
  */
-public class CustomFragment extends Fragment implements OnClickListener
-{
+public class CustomFragment extends Fragment implements OnClickListener {
 
 	/**
 	 * Set the touch and click listener for a View
@@ -22,22 +21,22 @@ public class CustomFragment extends Fragment implements OnClickListener
 	 *            the view
 	 * @return the same view
 	 */
-	public View setTouchNClick(View v)
-	{
+	public View setTouchNClick(View v) {
 
 		v.setOnClickListener(this);
 		v.setOnTouchListener(CustomActivity.TOUCH);
 		return v;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	@Override
-	public void onClick(View v)
-	{
-		
-		switch(v.getId()){
+	public void onClick(View v) {
+
+		switch (v.getId()) {
 		case R.id.p1:
 			Log.e("ONCLICK", "por codigo");
 			break;

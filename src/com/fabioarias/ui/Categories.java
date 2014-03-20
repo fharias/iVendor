@@ -19,19 +19,21 @@ import com.fabioarias.model.Data;
  * The Class Categories is the Fragment class that is launched when the user
  * clicks on Category button in Left navigation drawer.
  */
-public class Categories extends CustomFragment
-{
+public class Categories extends CustomFragment {
 
 	/** The category list. */
 	private ArrayList<Data> catList;
 
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater,
+	 * android.view.ViewGroup, android.os.Bundle)
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState)
-	{
+			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.categories, null);
 
 		loadCategories();
@@ -44,8 +46,7 @@ public class Categories extends CustomFragment
 	 * This method currently loads a dummy list of categories. You can write the
 	 * actual implementation of loading categories.
 	 */
-	private void loadCategories()
-	{
+	private void loadCategories() {
 		catList = new ArrayList<Data>();
 		catList.add(new Data("Women", null, R.drawable.cat1));
 		catList.add(new Data("Man", null, R.drawable.cat2));
@@ -57,8 +58,7 @@ public class Categories extends CustomFragment
 		catList.add(new Data("Cat 8", null, R.drawable.cat2));
 		catList.add(new Data("Cat 9", null, R.drawable.cat3));
 		catList.add(new Data("Cat 10", null, R.drawable.cat4));
-		
-		
+
 	}
 
 	/**
@@ -66,42 +66,46 @@ public class Categories extends CustomFragment
 	 * currently implementation of this adapter simply display static dummy
 	 * images. You need to write the code for loading actual images.
 	 */
-	private class GridAdapter extends BaseAdapter
-	{
+	private class GridAdapter extends BaseAdapter {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.widget.Adapter#getCount()
 		 */
 		@Override
-		public int getCount()
-		{
+		public int getCount() {
 			return catList.size();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.widget.Adapter#getItem(int)
 		 */
 		@Override
-		public Data getItem(int arg0)
-		{
+		public Data getItem(int arg0) {
 			return catList.get(arg0);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.widget.Adapter#getItemId(int)
 		 */
 		@Override
-		public long getItemId(int arg0)
-		{
+		public long getItemId(int arg0) {
 			return arg0;
 		}
 
-		/* (non-Javadoc)
-		 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see android.widget.Adapter#getView(int, android.view.View,
+		 * android.view.ViewGroup)
 		 */
 		@Override
-		public View getView(int pos, View v, ViewGroup arg2)
-		{
+		public View getView(int pos, View v, ViewGroup arg2) {
 			if (v == null)
 				v = LayoutInflater.from(getActivity()).inflate(
 						R.layout.cat_item, null);
